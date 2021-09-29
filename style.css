@@ -1,0 +1,106 @@
+/* ================== RESET ================== */
+body, h1, p {
+    margin: 0;
+}
+
+/* ================= TYPOGRAPHY =============== */
+
+/* ================  LAYOUT ================== */
+body{
+    background-color: #ffe5dc;
+}
+
+header {
+    background-color:#0090ff;
+    text-align: center;
+    padding: .7em;
+    color: white;
+}
+
+.container {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.sketch-section {
+    width: 420px;
+    height: 420px;
+    max-width: 420px;
+    max-height: 420px;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 1em;
+    padding-right: .5em;
+    background-color: white;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-item{
+    /*border: .5px ridge black;*/
+}
+
+.option-section {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-right: 1em;
+    padding-left: .5em;
+    background-color: white;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.btn {
+    padding: .7em;
+    background-color: #0090ff;
+    color: white;
+    border: none;
+    margin-bottom: 1em;
+}
+/* =============== CLASS MODIFIERS ============= */
+.blank {
+    background-color: #ffe5dc;
+}
+
+.painted {
+    background-color: #0090ff;
+}
+
+
+/* ================ MEDIA QUERIES ============= */
+@media (max-width: 560px) {
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sketch-section {
+        border: none;
+        padding: 0;
+        width: 100vw;
+        height: 100vw;
+    }
+
+    .option-section {
+        border: none;
+        padding: 0;
+        margin-top: 1em;
+        background-color: transparent;
+    }
+
+    .btn {
+        padding: .5em 3em;
+        margin-bottom: 1em;
+    }
+    
+}
