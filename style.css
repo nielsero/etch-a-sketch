@@ -5,16 +5,25 @@ body, h1, p {
 
 /* ================= TYPOGRAPHY =============== */
 
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.btn {
+    font-weight: 700;
+}
+
 /* ================  LAYOUT ================== */
 body{
-    background-color: #ffe5dc;
+    background-color: #e2f1ff; /* site dom color #ff3232 */
 }
 
 header {
-    background-color:#0090ff;
+    background-color:white;
     text-align: center;
     padding: .7em;
-    color: white;
+    color: #0090ff;
+    border-bottom: .3em solid #0090ff;
 }
 
 .container {
@@ -34,9 +43,6 @@ header {
     padding-left: 1em;
     padding-right: .5em;
     background-color: white;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
-    border-left: 2px solid black;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }
@@ -51,9 +57,6 @@ header {
     padding-right: 1em;
     padding-left: .5em;
     background-color: white;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
-    border-right: 2px solid black;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -66,9 +69,13 @@ header {
     border: none;
     margin-bottom: 1em;
 }
+
+.btn:hover, .btn:active {
+    background-color: #f35582;
+}
 /* =============== CLASS MODIFIERS ============= */
 .blank {
-    background-color: #ffe5dc;
+    background-color: #92abe1;
 }
 
 .painted {
