@@ -5,7 +5,7 @@ const resetButton = document.querySelector('.reset-btn');
 const sizeButton = document.querySelector('.size-btn');
 const randomButton = document.querySelector('.random-btn');
 
-let numSquares = 4;
+let numSquares = 10;
 
 // adding items to the grid container
 let grid = gridMaker(numSquares*numSquares);
@@ -105,5 +105,5 @@ function paintRandom(e) {
 function paintGridItem(e) {
 
     // had to change attribute directly because paintRandom() does the same
-    this.setAttribute('style','background-color: #0090ff');
+    this.setAttribute('style','background-color: black');
 }

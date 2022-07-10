@@ -1,6 +1,10 @@
 /* ================== RESET ================== */
-body, h1, p {
-    margin: 0;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 /* ================= TYPOGRAPHY =============== */
@@ -15,19 +19,16 @@ body {
 
 /* ================  LAYOUT ================== */
 body{
-    background-color: #e2f1ff; /* site dom color #ff3232 */
+    background-color: white;
 }
 
-header {
-    background-color:white;
+h1 {
     text-align: center;
-    padding: .7em;
-    color: #0090ff;
-    border-bottom: .3em solid #0090ff;
+    margin-top: 1rem;
 }
 
 .container {
-    margin-top: 2em;
+    margin-top: 1rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -42,9 +43,8 @@ header {
     padding-bottom: 1em;
     padding-left: 1em;
     padding-right: .5em;
-    background-color: white;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(10, 1fr);
 }
 
 .grid-item{
@@ -56,7 +56,6 @@ header {
     padding-bottom: 1em;
     padding-right: 1em;
     padding-left: .5em;
-    background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -64,22 +63,22 @@ header {
 
 .btn {
     padding: .7em;
-    background-color: #0090ff;
+    background-color: black;
     color: white;
     border: none;
     margin-bottom: 1em;
 }
 
 .btn:hover, .btn:active {
-    background-color: #f35582;
+    background-color: #0090ff;
 }
 /* =============== CLASS MODIFIERS ============= */
 .blank {
-    background-color: #92abe1;
+    background-color: lightgray;
 }
 
 .painted {
-    background-color: #0090ff;
+    background-color: black;
 }
 
 
