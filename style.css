@@ -72,6 +72,19 @@ h1 {
 .btn:hover, .btn:active {
     background-color: blue;
 }
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .3rem;
+    margin-top: 1.5rem;
+}
+
+footer a {
+    display: flex;
+    align-items: center;
+}
 /* =============== CLASS MODIFIERS ============= */
 .blank {
     background-color: lightgray;
