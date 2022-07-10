@@ -2,20 +2,26 @@
 const sketchSection = document.querySelector('.sketch-section');
 const defaultButton = document.querySelector('.default-btn');
 const resetButton = document.querySelector('.reset-btn');
-const sizeButton = document.querySelector('.size-btn');
+const eraseButton = document.querySelector('.erase-btn');
 const randomButton = document.querySelector('.random-btn');
+const slider = document.querySelector('.slider');
+const sliderValue = document.querySelector('.slider-value');
 
-let numSquares = 10;
+// Initial values
+let numSquares = 25;
+let active = "default";
 
 // adding items to the grid container
-let grid = gridMaker(numSquares*numSquares);
+let grid = gridMaker(numSquares * numSquares);
 addGrid(sketchSection, grid);
 
-// adding listeners to the buttons
+// adding listeners
 defaultButton.addEventListener('click', clickedDefault);
 resetButton.addEventListener('click', resetGrid);
-sizeButton.addEventListener('click', changeGridSize);
 randomButton.addEventListener('click', clickedRandom);
+eraseButton.addEventListener('click', clickedErase);
+slider.addEventListener('change', handleSliderChange);
+
 
 
 /* ================ DOM MANIPULATION FUNCTIONS ================ */
@@ -45,37 +51,67 @@ function removeGrid(gridContainer, grid) {
     }
 }
 
+// updates slider value
+function updateSliderValue(value) {
+    const newText = `${value} x ${value}`;
+    sliderValue.textContent = newText;
+}
+
+// change background color for the active button
+function changeActive(newActive) {
+    if(active === newActive) {
+        return; // do nothing
+    }
+    active = newActive;
+
+    // reset buttons background colors
+    defaultButton.classList.remove('active');
+    randomButton.classList.remove('active');
+    eraseButton.classList.remove('active');
+
+    if(newActive == "default") {
+        defaultButton.classList.add('active');
+        return;
+    }
+    if(newActive == "random") {
+        randomButton.classList.add('active');
+        return;
+    }
+    // Not default nor random = erase
+    eraseButton.classList.add('active');
+}
+
 /* =============== EVENT LISTENERS =================== */
+// updates slider value
+function handleSliderChange(e) {
+    const value = e.target.value;
+    updateSliderValue(value);
+    numSquares = value;
+    changeGridSize();
+}
+
 // reset all the grid items
 function resetGrid(e) {
-
     removeGrid(sketchSection, grid);
-    grid = gridMaker(numSquares*numSquares);
-
+    grid = gridMaker(numSquares * numSquares);
     addGrid(sketchSection, grid);
+    changeActive("default");
 }
 
 // creating new grid
-function changeGridSize(e) {
-    let prevNumSquares = numSquares;
-    numSquares = Number(prompt('How many squares per line'));
-
-    if(!isNaN(numSquares) && numSquares>0 && numSquares<=100) {
-        removeGrid(sketchSection, grid);
-
-        sketchSection.setAttribute('style', `grid-template-columns: repeat(${numSquares}, 1fr)`);
-
-        grid = gridMaker(numSquares*numSquares);
-        addGrid(sketchSection, grid);
-    } else {
-        numSquares = prevNumSquares;
-    }
+function changeGridSize() {
+    removeGrid(sketchSection, grid);
+    sketchSection.setAttribute('style', `grid-template-columns: repeat(${numSquares}, 1fr)`);
+    grid = gridMaker(numSquares * numSquares);
+    addGrid(sketchSection, grid);
 }
 
 function clickedDefault(e) {
+    changeActive("default");
 
     for(let i=0; i<grid.length; i++) {
-        grid[i].removeEventListener('mouseover', paintRandom); 
+        grid[i].removeEventListener('mouseover', paintRandom);
+        grid[i].removeEventListener('mouseover', eraseGrid);
         grid[i].addEventListener('mouseover', paintGridItem);
     }
 
@@ -83,10 +119,24 @@ function clickedDefault(e) {
 }
 
 function clickedRandom(e) {
+    changeActive("random");
 
     for(let i=0; i<grid.length; i++) {
         grid[i].removeEventListener('mouseover', paintGridItem); 
+        grid[i].removeEventListener('mouseover', eraseGrid);
         grid[i].addEventListener('mouseover', paintRandom);
+    }
+
+    addGrid(sketchSection, grid);
+}
+
+function clickedErase(e) {
+    changeActive("erase");
+
+    for(let i=0; i<grid.length; i++) {
+        grid[i].removeEventListener('mouseover', paintGridItem); 
+        grid[i].removeEventListener('mouseover', paintRandom);
+        grid[i].addEventListener('mouseover', eraseGrid);
     }
 
     addGrid(sketchSection, grid);
@@ -105,5 +155,10 @@ function paintRandom(e) {
 function paintGridItem(e) {
 
     // had to change attribute directly because paintRandom() does the same
-    this.setAttribute('style','background-color: black');
+    this.setAttribute('style', 'background-color: black');
+}
+
+// to erase grid
+function eraseGrid(e) {
+    this.setAttribute('style', 'background-color: lightgray');
 }
